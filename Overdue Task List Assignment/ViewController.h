@@ -7,9 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaksObject.h"
+#import "EditTaskViewController.h"
 
-@interface ViewController : UIViewController
+@protocol ViewControllerDelegate <NSObject>
 
+-(void)updateTask;
+
+@end
+
+@interface ViewController : UIViewController  <EditTaskViewControllerDelegate>
+
+@property (strong, nonatomic) TaksObject *task;
+@property (strong, nonatomic) id <ViewControllerDelegate> delegate;
+
+@property (strong, nonatomic) IBOutlet UILabel *taskNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *descriptionTaskLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dueDateTaskLabel;
+
+- (IBAction)editButtonPressed:(UIButton *)sender;
 
 @end
 
